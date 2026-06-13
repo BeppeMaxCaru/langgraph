@@ -16,6 +16,9 @@ class AgentState(TypedDict):
 
 
 def remove_roles(state: AgentState) -> AgentState:
+    """
+    Removes all roles from the agent state.
+    """
     state["roles"] = []
     return state
 
@@ -29,8 +32,11 @@ graph.set_finish_point("remove_roles")
 
 
 def main():
-    print("Hello from langgraph!")
+    """
+    Compiles the graph and invokes the remove_roles node with a sample agent state.
+    """
     app = graph.compile()
+
     result = app.invoke(
         {
             "id": 0,
@@ -39,6 +45,7 @@ def main():
             "roles": ["Developer", "Maintainer"],
         }
     )
+
     print(result)
 
 
